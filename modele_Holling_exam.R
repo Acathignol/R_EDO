@@ -6,14 +6,14 @@ library(phaseR)
 
 Holling1=function(t,x,parms)
 {
-  dx1=x[1]*(2-x[1])-(x[1]*x[2])/(1+x[1]) #parms1=mu 
+  dx1=x[1]*(2-x[1])-(x[1]*x[2])/(1+x[1]) #parms1 = mu 
   dx2=(x[1]*x[2])/(1+x[1])-parms[1]*x[2]
   list(c(dx1,dx2))
 }
 
 Holling2=function(t,y,parameters)
 {
-  dy1=y[1]*(2-y[1])-(y[1]*y[2])/(1+y[1]) #parms1=mu 
+  dy1=y[1]*(2-y[1])-(y[1]*y[2])/(1+y[1]) #parms1 = mu 
   dy2=(y[1]*y[2])/(1+y[1])-parameters[1]*y[2]
   list(c(dy1,dy2))
 }
@@ -65,9 +65,9 @@ init2=c(20,5)
 solution1=lsoda(y=init1,times=temps,func=Holling1,parms=c(mu))
 solution2=lsoda(y=init2,times=temps,func=Holling1,parms=c(mu))
 plot(solution1[,2],solution1[,3],col=4,type='l',lwd=1,xlim=c(0,20),ylim=c(0,10),
-     ylab="Prédateurs",
+     ylab="Pr?dateurs",
      xlab='Proies',
-     main="Portrait de phase du modèle Holling")
+     main="Portrait de phase du mod?le Holling")
 lines(solution2[,2],solution2[,3],lty=2,col=2,lwd=2)
 legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=c(1,2) )
 
@@ -89,7 +89,7 @@ for (i in 1:nrow(Eq)){
 x11()
 plot(temps,solution1[,2],type='l',col="blue",ylab="N et P",
      xlab='temps',ylim=c(0,20),xlim=c(0,100),
-     main="Chroniques du modèle Holling")
+     main="Chroniques du mod?le Holling")
 lines(temps,solution1[,3],lty=2,col="blue")
 lines(temps,solution2[,2],lty=1,col="red")
 lines(temps,solution2[,3],lty=2,col="red")
@@ -112,9 +112,9 @@ x11()
 solution1=lsoda(y=init1,times=temps,func=Holling1,parms=c(mu2))
 solution2=lsoda(y=init2,times=temps,func=Holling1,parms=c(mu2))
 plot(solution1[,2],solution1[,3],col=4,type='l',lwd=1,xlim=c(0,20),ylim=c(0,10),
-     ylab="Prédateurs",
+     ylab="Pr?dateurs",
      xlab='Proies',
-     main="Portrait de phase du modèle Holling")
+     main="Portrait de phase du mod?le Holling")
 lines(solution2[,2],solution2[,3],lty=2,col=2,lwd=2)
 legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=c(1,2) )
 
@@ -136,7 +136,7 @@ for (i in 1:nrow(Eq)){
 x11()
 plot(temps,solution1[,2],type='l',col="blue",ylab="N et P",
      xlab='temps',ylim=c(0,20),xlim=c(0,100),
-     main="Chroniques du modèle Holling")
+     main="Chroniques du mod?le Holling")
 lines(temps,solution1[,3],lty=2,col="blue")
 lines(temps,solution2[,2],lty=1,col="red")
 lines(temps,solution2[,3],lty=2,col="red")
@@ -160,9 +160,9 @@ x11()
 solution1=lsoda(y=init1,times=temps,func=Holling1,parms=c(mu3))
 solution2=lsoda(y=init2,times=temps,func=Holling1,parms=c(mu3))
 plot(solution1[,2],solution1[,3],col=4,type='l',lwd=1,xlim=c(0,20),ylim=c(0,10),
-     ylab="Prédateurs",
+     ylab="Pr?dateurs",
      xlab='Proies',
-     main="Portrait de phase du modèle Holling")
+     main="Portrait de phase du mod?le Holling")
 lines(solution2[,2],solution2[,3],lty=2,col=2,lwd=2)
 legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=c(1,2) )
 
@@ -184,7 +184,7 @@ for (i in 1:nrow(Eq)){
 x11()
 plot(temps,solution1[,2],type='l',col="blue",ylab="N et P",
      xlab='temps',ylim=c(0,20),xlim=c(0,100),
-     main="Chroniques du modèle Holling")
+     main="Chroniques du mod?le Holling")
 lines(temps,solution1[,3],lty=2,col="blue")
 lines(temps,solution2[,2],lty=1,col="red")
 lines(temps,solution2[,3],lty=2,col="red")
