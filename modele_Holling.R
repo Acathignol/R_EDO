@@ -21,7 +21,7 @@ Holling2=function(t,y,parameters)
 ptEqHolling<-function(mu){
   p1<-c(0,0)
   p2<-c(2,0) 
-  p3<-c(mu/(1-mu),2-3*mu)
+  p3<-c(mu/(1-mu),(2-3*mu)/(1-mu)^2)
   if(mu>0 && mu<(2/3)){eq<-rbind(p1,p2,p3)}
   return(eq)
 }
@@ -51,7 +51,7 @@ HollingStability<-function(mu){
     #print(Tr)
     #print(delta)
   }
-  return(cbind(Eq,Eigen))#& Delta ?
+  return(cbind(Eq,Eigen,Delta))#& Delta ?
 }
 
 HollingStability(mu)
@@ -73,12 +73,12 @@ legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=
 
 flowField(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30),parameters=c(mu),points=25)
 "nullclines(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30), parameters =c(mu), points = 25,
-           system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
+system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
 trajectory(deriv=Holling1, y0 =c(30,15), n = NULL, t.start = 0, t.end=200, t.step = 0.01,
            parameters = c(mu), system = "two.dim", colour = "purple",lwd=1,lty=2,
            add = TRUE)
 
-points(c(1,20),c(10,5),col=c(4,2),lwd=3)
+points(c(init1[1],init2[1]),c(init1[2],init2[2]),col=c(4,2),lwd=3)
 
 for (i in 1:nrow(Eq)){
   points(Eq[i,1],Eq[i,2],col=1,lwd=3)
@@ -120,12 +120,12 @@ legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=
 
 flowField(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30),parameters=c(mu2),points=25)
 "nullclines(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30), parameters =c(mu2), points = 25,
-           system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
+system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
 trajectory(deriv=Holling1, y0 =c(30,15), n = NULL, t.start = 0, t.end=200, t.step = 0.01,
            parameters = c(mu2), system = "two.dim", colour = "purple",lwd=1,lty=2,
            add = TRUE)
 
-points(c(1,20),c(10,5),col=c(4,2),lwd=3)
+points(c(init1[1],init2[1]),c(init1[2],init2[2]),col=c(4,2),lwd=3)
 
 for (i in 1:nrow(Eq)){
   points(Eq[i,1],Eq[i,2],col=1,lwd=3)
@@ -152,7 +152,7 @@ Eq<-ptEqHolling(mu3)
 
 HollingStability(mu3)
 
-temps=seq(0,100,by=0.1)
+temps=seq(0,200,by=0.1)
 init1=c(1,10)
 init2=c(20,5)
 
@@ -168,12 +168,12 @@ legend('topright',legend=c("1prey,10pred", "20prey,5pred"),lwd=2,col=c(4,2),lty=
 
 flowField(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30),parameters=c(mu3),points=25)
 "nullclines(deriv=Holling2, x.lim=c(0,25),y.lim=c(0,30), parameters =c(mu3), points = 25,
-           system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
+system =\"two.dim\", colour = c(\"red\", \"blue\"), add = TRUE)"
 trajectory(deriv=Holling1, y0 =c(30,15), n = NULL, t.start = 0, t.end=200, t.step = 0.01,
-           parameters = c(mu2), system = "two.dim", colour = "purple",lwd=1,lty=2,
+           parameters = c(mu3), system = "two.dim", colour = "purple",lwd=1,lty=2,
            add = TRUE)
 
-points(c(1,20),c(10,5),col=c(4,2),lwd=3)
+points(c(init1[1],init2[1]),c(init1[2],init2[2]),col=c(4,2),lwd=3)
 
 for (i in 1:nrow(Eq)){
   points(Eq[i,1],Eq[i,2],col=1,lwd=3)
@@ -191,3 +191,11 @@ lines(temps,solution2[,3],lty=2,col="red")
 legend('topright',legend=c("Prey-1prey,10pred",
                            "Pred-1prey,10pred", "Prey-20prey,5pred", "Pred-20prey,5pred"),
        lwd=2,col=c(4,4,2,2),lty=c(1,2,1,2) )
+
+
+#------------------------------------------------For various mu--------------------------------------------------
+mu4=0.0000001/6
+
+Eq<-ptEqHolling(mu4)
+
+HollingStability(mu4)
